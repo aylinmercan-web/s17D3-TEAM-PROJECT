@@ -1,7 +1,9 @@
 package com.workintech.zoo.controller;
 
 import com.workintech.zoo.entity.Kangaroo;
+import com.workintech.zoo.exceptions.ZooException;
 import jakarta.annotation.PostConstruct;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -25,6 +27,9 @@ public class KangarooController {
 
     @GetMapping("/{id}")
     public Kangaroo getById(@PathVariable Integer id){
+        if(!kangaroos.containsKey(id)){
+            throw new ZooException("Bu id bulunmuyor id:"+id, HttpStatus.NOT_FOUND);
+        }
         return kangaroos.get(id);
     }
 
@@ -42,6 +47,9 @@ public class KangarooController {
 
     @DeleteMapping("/{id}")
     public Kangaroo delete(@PathVariable Integer id) {
+        if(!kangaroos.containsKey(id)){
+            throw new ZooException("Bu id bulunmuyor id:"+id, HttpStatus.NOT_FOUND);
+        }
         return kangaroos.remove(id);
     }
 
