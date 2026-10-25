@@ -10,8 +10,8 @@ public class ZooGlobalExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<ZooErrorResponse> handlerException(ZooException zooException){
         ZooErrorResponse zooErrorResponse = new ZooErrorResponse(
-                zooException.getMessage(),
                 zooException.getHttpStatus().value(),
+                zooException.getMessage(),
                 System.currentTimeMillis()
         );
         return new ResponseEntity<>(zooErrorResponse,zooException.getHttpStatus());
@@ -20,8 +20,8 @@ public class ZooGlobalExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<ZooErrorResponse> handlerException(Exception exception){
         ZooErrorResponse zooErrorResponse = new ZooErrorResponse(
-                exception.getMessage(),
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                exception.getMessage(),
                 System.currentTimeMillis()
         );
 

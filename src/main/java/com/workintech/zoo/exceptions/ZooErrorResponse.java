@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ZooErrorResponse {
-    private String message;
     private int status;
+    private String message;
     private long timestamp;
 }
